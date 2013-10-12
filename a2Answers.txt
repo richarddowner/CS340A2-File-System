@@ -1,0 +1,14 @@
+Richard Downer
+rdow035
+1414352
+
+Question 1:
+If a directory is allowed to be linked to a parent directory, this would cause cycles in a
+directory tree graph. This would cause search functions to find infinitly many different paths to the linked directory. It could also cause search algorithms to get stuck in an
+endless loop.
+
+A solution to this problem aside from not allowing the creation of links to parent directories, would be to have a depth count witch could detect when stuck in loops. If the count gets to high, we would be stuck in a loop, so exit.
+
+
+Quesiton 2:
+My linking solution works, however not when links are made with different names. If this was not the case and links would always have the same name, then my directory structure would work in a distributed environment. The directory tree would need to be shared on some medium that was accessed by the computers using the filesystem. The directory tree would need to be not stored locally. 

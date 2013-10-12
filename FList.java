@@ -1,3 +1,8 @@
+/**
+ * CS320 Assignment 2
+ * File System
+ * @author rdow035 1414352
+ */
 // Creation Date Ordered F Object Storage 
 class FList extends FileSystem {
 	private F[] list;

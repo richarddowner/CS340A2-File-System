@@ -31,20 +31,14 @@ public class FileSystem {
 		F rootNodeFile = new F("", creationTime++, "12-12-2012", "root", "folder", 700);
 		
 		fileStorage.insert(rootNodeFile);
-		// rootNodeFile.addReference(rootNodeLink);
 		rootNodeLink.setReference(rootNodeFile);
 		
 		cli = new CLI();
 		
-		//System.out.println("args.length="+args.length);
 		try {	
 			
 			Scanner s = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
 			ArrayList<String> commandList = new ArrayList<String>();
-			
-			// String str = in.readLine();
-			
-			
 			
 			if(System.in.available() != 0) {
 				
@@ -54,10 +48,7 @@ public class FileSystem {
 				
 				for(int i=0; i<commandList.size(); i++) {
 					
-					//System.out.println(commandList.get(i));
-					// System.out.print(cli.getCurrentPath()+cli.getPrompt());
 					System.out.print("> ");
-					// command = inputReader.readLine().trim();
 					command = commandList.get(i);
 					if(command.equals("quit")) break;
 					else if(command.equals("home")) cli.home();
@@ -88,7 +79,6 @@ public class FileSystem {
 			} else {
 				while(true) {
 					try {
-						//System.out.print(cli.getCurrentPath()+cli.getPrompt());
 						System.out.print("> ");
 						command = inputReader.readLine().trim();
 						if(command.equals("quit")) break;

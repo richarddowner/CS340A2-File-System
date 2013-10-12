@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Stack;
-
+/**
+ * CS320 Assignment 2
+ * File System
+ * @author rdow035 1414352
+ */
 class DirectoryTree extends FileSystem{
 	//private L[] collection; // remove this there is no need.
 	private int currentPosition;
@@ -15,29 +19,20 @@ class DirectoryTree extends FileSystem{
 	
 	public Link searchV2(String path, String type, boolean lookingForParent) {
 		
-		//System.out.println("HERE 1");
-		
 		int pathStart;
 		
 		Link node;
 		
-		// Note: currentNode is being set to root node initially 
-		
-		// Problem, path is not split correctly because original pass in like this: /new, not new
-		
 		// Need to know if searching from root node
 		if(path.startsWith("/")) {
 			// search from root node
-			//System.out.println("HERE 1");
 			node = rootNode;
 			pathStart = 1;
 		} else if(currentNode.equals(rootNode)) {
-			//System.out.println("HERE 2");
 			node = rootNode;
 			pathStart = 0;
 		} else {
 			// search from current node
-			//System.out.println("HERE 3");
 			node = currentNode;
 			pathStart = 0;
 		}
@@ -45,23 +40,13 @@ class DirectoryTree extends FileSystem{
 		String paths[] = path.split("/");
 		String searchType; // in case looking for parent
 		
-		//System.out.println("HERE 3");
 		
 		boolean nodeFound = false;
 		
-		// System.out.println("paths.length="+paths.length);
-		
-		//for(int i=0; i<paths.length; i++) {
-			//System.out.println("paths["+i+"]="+paths[i]);
-		//}
-		//System.out.println("pathStart="+pathStart);
-		//System.out.println("paths.length="+paths.length);
 		// start at 1, assume root node always first
 		for(int i=pathStart; i<paths.length; i++) { // paths = { [ ], [ doc ], [ folder ] } length = 3, check 2 times because we skip root
 			// Look at the nodes children if it is not null
-			//System.out.println("HERE 4");
 			if(node.getChildrenList() != null) {
-				// System.out.println("HERE 2");
 				for(int j=0; j<node.getChildrenList().length; j++) {
 					
 					if(type.equals("file")) {
@@ -74,8 +59,6 @@ class DirectoryTree extends FileSystem{
 						} else {
 							searchType = "folder";
 						}
-						//System.out.println("searchType="+searchType);
-						//System.out.println("paths["+i+"]="+paths[i]);
 						if((node.getChildrenList()[j] != null) && (node.getChildrenList()[j].getLocalPath().equals(paths[i])) && (node.getChildrenList()[j].getType().equals(searchType))) {
 							// found directory we are after
 							// set this to be node, and if there are more directories to check, break and go again
@@ -113,23 +96,17 @@ class DirectoryTree extends FileSystem{
 		if(node.getLocalPath().equals(paths[paths.length-1])) {
 			return node;
 		} else {
-			// System.out.println("NULL HERE");
 			return null;
 		}
 		
-		//return null;
 	}
 	
 	// Take a path and return the node
 	// or if node doesn't exist, return null 
 	public Link search(String path, String type, boolean lookingForParent) {
 		
-		// System.out.println("path="+path);
-		
 		String paths[] = path.split("/");
-		// System.out.println("paths.length="+paths.length); // if just "/" was passed in, length will be 0
 		String searchType;
-		//L node = collection[0];
 		Link node = rootNode;
 		
 		boolean nodeFound = false;
@@ -150,8 +127,6 @@ class DirectoryTree extends FileSystem{
 						} else {
 							searchType = "folder";
 						}
-						//System.out.println("searchType="+searchType);
-						//System.out.println("paths["+i+"]="+paths[i]);
 						if((node.getChildrenList()[j] != null) && (node.getChildrenList()[j].getLocalPath().equals(paths[i])) && (node.getChildrenList()[j].getType().equals(searchType))) {
 							// found directory we are after
 							// set this to be node, and if there are more directories to check, break and go again
@@ -207,36 +182,12 @@ class DirectoryTree extends FileSystem{
 		
 		// System.out.println("command="+command);
 		if(rootNode!=null) {
-			//System.out.println("Ncommand="+command);
-			//System.out.println("Nl.getType()="+l.getType());
 			if(searchV2(command, l.getType(), false)!=null) {
 				//System.out.println("SEARCHV2: THE NODE EXISTED");
 			} else {
 				//System.out.println("SEARCHV2: THE NODE DID NOT EXIST");
 			}
 		}
-		
-		// GET ABSPATH FROM COMMAND
-		
-		/*
-		if(linkParent==null) {
-			// adding from mkdir/create
-			System.out.println("command="+command);
-			absPathFromCommand = pathContent[0];
-			if(absPathFromCommand.startsWith("/")) {
-				// path given from command is an absolute path
-				absPathFromCommand = absPathFromCommand;
-			} else if(currentNode.equals(rootNode)) {
-				// path given is local path from the root
-				absPathFromCommand = "/"+absPathFromCommand;
-			} else {
-				// path given is local path from currentNode
-			}
-		} else {
-			// adding from link
-			System.out.println("commandlink="+command);
-			absPathFromCommand = pathContent[0];
-		}*/
 		
 		Link parent;
 		F f;
@@ -390,15 +341,7 @@ class DirectoryTree extends FileSystem{
 				Link tmp;
 				
 				deleteAllDFS(rootNode, f.getReferenceList()[i]);
-				
-				/*
-				if(!(deleteAllDFS(rootNode, f.getReferenceList()[i]))) {
-					System.out.println("DFS did not find the node");
-				} else {
-					System.out.println("DFS did find the node");
-				}*/
-				// search over graph "f.getReferenceList().length"'times looking for instance of L object
-				
+	
 			}
 			
 
@@ -462,19 +405,6 @@ class DirectoryTree extends FileSystem{
 				s.pop();
 			} else {
 				
-				/*
-				System.out.println("Setting "+nextNode.getLocalPath()+" seen to true");
-				System.out.println(nextNode.getLocalPath()+"'s children list length="+nextNode.getChildrenList().length);
-				if(nextNode.getChildrenList()[0]!=null) {
-					System.out.println(nextNode + " is " + nextNode.getLocalPath());
-					System.out.println(nextNode.getLocalPath()+"'s child is: " + nextNode.getChildrenList()[0].getLocalPath());
-					System.out.println(nextNode.getLocalPath()+"'s child is: " + nextNode.getChildrenList()[0]);
-					System.out.println(nextNode.getLocalPath()+"'s childs seen value is: " + nextNode.getChildrenList()[0].getSeen());
-					//System.out.println("node to find is: "+nodeToFind);
-				}
-				*/
-				
-				
 				nextNode.setSeen(true);
 				
 				if(nextNode.equals(nodeToFind)) {
@@ -486,9 +416,6 @@ class DirectoryTree extends FileSystem{
 					
 					removeNode(nextNode, parent);
 				}
-				
-				// System.out.println("Pushing: "+nextNode.getLocalPath());
-
 				
 				pos++;
 				

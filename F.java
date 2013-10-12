@@ -1,5 +1,9 @@
 // File/Folder Storage Object
-// TODO: change creationTime from int to date
+/**
+ * CS320 Assignment 2
+ * File System
+ * @author rdow035 1414352
+ */
 class F {
 	private String name;
 	private int creationTime;
