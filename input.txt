@@ -1,0 +1,3 @@
+mkdir f1
+enter f1
+create file.txt
