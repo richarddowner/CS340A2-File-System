@@ -467,7 +467,7 @@ public class CLI extends FileSystem {
 	public boolean deleteall(String command) {
 		try {
 			
-			boolean notYetImplemented = true;
+			boolean notYetImplemented = false;
 			
 			if(notYetImplemented) {
 				System.out.println("deleteall has not been implemented");
