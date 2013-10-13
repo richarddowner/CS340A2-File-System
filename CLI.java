@@ -2,7 +2,6 @@ import java.util.*;
 /**
  * CS320 Assignment 2
  * File System
- * @author rdow035 1414352
  */
 // Command Line Interface 
 public class CLI extends FileSystem {
